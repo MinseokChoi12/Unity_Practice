@@ -6,16 +6,21 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     float _speed = 10.0f;
+
     void Start()
     {
-        
+        Managers.Input.KeyAction -= OnKeyboard;
+        Managers.Input.KeyAction += OnKeyboard;
     }
     float _yAngle = 0.0f;
 
     void Update()
     {
-        _yAngle += Time.deltaTime * _speed * 100;
-
+                
+    }
+    
+    void OnKeyboard()
+    {
         // 절대 회전값
         //transform.eulerAngles = new Vector3(0.0f, _yAngle, 0.0f);
 
@@ -34,7 +39,7 @@ public class PlayerController : MonoBehaviour
             //transform.Translate(Vector3.forward * Time.deltaTime * _speed);
             transform.position += Vector3.forward * Time.deltaTime * _speed;
         }
-            
+
         if (Input.GetKey(KeyCode.S))
         {
             //transform.rotation = Quaternion.LookRotation(Vector3.back);
@@ -64,6 +69,5 @@ public class PlayerController : MonoBehaviour
             transform.position += Vector3.right * Time.deltaTime * _speed;
 
         }
-
     }
 }
